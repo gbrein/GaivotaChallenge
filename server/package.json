@@ -7,15 +7,18 @@
     "docker": "docker run -p 21017:27017 -d mongo && docker ps",
     "dev": "clear && nodemon -r dotenv/config ./src/index.js ",
     "lint": "eslint ./src --fix",
-    "start": "node ./src/index.js"
+    "start": "nodemon ./src/index.js"
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
     "dotenv": "^6.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.3",
+    "mongoose": "^5.9.17",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
