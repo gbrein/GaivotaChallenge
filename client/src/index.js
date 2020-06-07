@@ -1,9 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
 import { AppContainer } from "react-hot-loader";
-import Root from "./components/Root";
+import Root from "./Root";
 import * as serviceWorker from "./serviceWorker";
 import "./styles/index.css";
+import "leaflet/dist/leaflet.css";
 
 const root = document.getElementById("root");
 
@@ -15,8 +16,8 @@ render(
 );
 
 if (module.hot) {
-  module.hot.accept("./components/Root", () => {
-    const NewRoot = require("./components/Root").default;
+  module.hot.accept("./Root", () => {
+    const NewRoot = require("./Root").default;
     render(
       <AppContainer>
         <NewRoot />

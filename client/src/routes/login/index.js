@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { authenticate } from "../../auth";
+import { authenticate } from "../../services/auth";
+import { Form, Button } from "react-bootstrap";
 import { PropTypes } from "prop-types";
 
 const Login = props => {
@@ -31,8 +32,7 @@ const Login = props => {
     const { email, password } = loginForm;
     try {
       // Here you can store the userData in any way
-      const userData = await authenticate(email, password);
-      console.log(userData);
+      await authenticate(email, password);
       history.push("/app/home");
     } catch (e) {
       console.error(e);
@@ -40,23 +40,34 @@ const Login = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="email"
-        type="input"
-        onChange={handleChange("email")}
-        value={loginForm.email}
-        placeholder="admin@gaivota.ai"
-      />
-      <input
-        name="password"
-        type="password"
-        onChange={handleChange("password")}
-        value={loginForm.password}
-        autoComplete="off"
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className="login-containeer">
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            onChange={handleChange("email")}
+            value={loginForm.email}
+            type="email"
+            placeholder="admin@gaivota.ai"
+          />
+          <Form.Text className="text-muted"></Form.Text>
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            onChange={handleChange("password")}
+            value={loginForm.password}
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Group>
+        <div className="button-center">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </div>
+      </Form>
+    </div>
   );
 };
 
